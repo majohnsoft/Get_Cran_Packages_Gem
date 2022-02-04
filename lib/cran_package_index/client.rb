@@ -28,11 +28,14 @@ module CranPackageIndex
             size = packages.length()
             @all_pacakge_version = Hash.new "initial"
             for i in 0..size do 
-                pack = packages[i]
-                pack["Package:"]= ""
-                vers = versions[i]
-                vers["Version:"]= ""
-                @all_pacakge_version["#{pack}"] = "#{packages[i]}_#{vers}.tar.gz"
+                if (packages[i].nil?) == false
+                    pack = packages[i]
+                    pack["Package:"] = " "
+                    vers = versions[i]
+                    vers["Version:"] = ""
+
+                    @all_pacakge_version["#{pack.strip}"] = "#{BASE_URL}#{pack.strip}_#{vers.strip}.tar.gz"
+                end
             end
             return @all_pacakge_version
         end
